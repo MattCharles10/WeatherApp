@@ -1,0 +1,53 @@
+package com.example.weatherapp.fragments.home
+
+import android.annotation.SuppressLint
+import android.location.Location
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherapp.data.WeatherData
+import com.example.weatherapp.databinding.ItemContainerCurrentLocationBinding
+
+class WeatherDataAdapter (
+    private  val onlocationClicked : () -> Unit
+) : RecyclerView.Adapter<WeatherDataAdapter.CurrentLocationViewHolder>() {
+    private val weatherData = mutableListOf<WeatherData>()
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(data: List<WeatherData>) {
+        weatherData.clear()
+        weatherData.addAll(data)
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrentLocationViewHolder {
+        return CurrentLocationViewHolder(
+            ItemContainerCurrentLocationBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: CurrentLocationViewHolder, position: Int) {
+        holder.bind(weatherData[position] as WeatherData.CurrentLocation)
+    }
+
+    override fun getItemCount(): Int {
+        return  weatherData.size
+    }
+    inner class CurrentLocationViewHolder(
+        private val binding: ItemContainerCurrentLocationBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(currentLocation: WeatherData.CurrentLocation) {
+            with(binding) {
+                textCurrentDate.text = currentLocation.data
+                textCurrentLocation.text = currentLocation.location
+                imageCurrentLocation.setOnClickListener { onlocationClicked() }
+                textCurrentLocation.setOnClickListener { onlocationClicked() }
+            }
+        }
+    }
+}
