@@ -43,7 +43,7 @@ class WeatherDataAdapter (
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(currentLocation: WeatherData.CurrentLocation) {
             with(binding) {
-                textCurrentDate.text = currentLocation.data
+                textCurrentDate.text = currentLocation.date
                 textCurrentLocation.text = currentLocation.location
                 imageCurrentLocation.setOnClickListener { onlocationClicked() }
                 textCurrentLocation.setOnClickListener { onlocationClicked() }

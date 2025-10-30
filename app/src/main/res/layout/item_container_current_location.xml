@@ -32,13 +32,15 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_4sdp"
         android:layout_marginStart="@dimen/_4sdp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:textColor="@color/raisin_black"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="@+id/imageLocation"
         app:layout_constraintEnd_toStartOf="@id/imageCurrentLocation"
         app:layout_constraintStart_toEndOf="@+id/imageLocation"
         app:layout_constraintTop_toTopOf="@+id/imageLocation"
-        tools:text="Hosur , TamilNadu , India" />
+        tools:text="Hosur, TamilNadu , India" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageCurrentLocation"
